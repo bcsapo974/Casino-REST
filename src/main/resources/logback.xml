@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<appender name="CASINO_APPENDER"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/casino_app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>logs/casino_app.%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+
+			<!-- keep 9999 days' worth of history -->
+			<maxHistory>9999</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%date [%thread] %-5level %logger{36}: %message%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="uk.sample.casino" level="DEBUG"/>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.hibernate.SQL" level="INFO"/>
+	
+	<root level="DEBUG">
+		<appender-ref ref="CASINO_APPENDER" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>
