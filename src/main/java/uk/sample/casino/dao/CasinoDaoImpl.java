@@ -51,7 +51,7 @@ public class CasinoDaoImpl implements CasinoDao {
     private Function<Object[], TopRated> mapToItem = (record) -> {
         Long id = ((BigInteger) record[0]).longValue();
         String name = (String) record[1];
-        Long counted = ((BigInteger) record[0]).longValue();
+        Long counted = ((BigInteger) record[2]).longValue();
         TopRated topRated = new TopRated(id, name, counted);
         return topRated;
     };
